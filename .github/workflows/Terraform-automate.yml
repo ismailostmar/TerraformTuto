@@ -9,17 +9,18 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
 
-    env:	
-      AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
-      AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
-      AWS_REGION: 'us-east-1'
+    #env:	
+      #AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
+      #AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+      #AWS_REGION: 'us-east-1'
 
     steps:
-      - name: Configure AWS CLI
-        run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ID
-          aws configure set default.region $AWS_REGION
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: us-east-1
         
       - name: Checkout code
         uses: actions/checkout@v2
