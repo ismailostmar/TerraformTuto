@@ -26,3 +26,7 @@ jobs:
         id: plan
         if: github.event_name == 'push'
         run: terraform plan -no-color
+
+      - name: Terraform Apply
+        id: Apply
+        run: terraform apply
