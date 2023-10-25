@@ -21,7 +21,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ID }}
           aws-region: 'us-east-1'
-        
+
+      - name: Debug AWS Credentials
+        run: |
+          echo "AWS_ACCESS_ID: $AWS_ACCESS_ID"
+          echo "AWS_SECRET_ID: $AWS_SECRET_ID"
+          echo "aws_region: $aws-region"
+          
       - name: Checkout code
         uses: actions/checkout@v2
 
