@@ -29,4 +29,4 @@ jobs:
 
       - name: Terraform Apply
         id: Apply
-        run: terraform apply -auto-approve terraform.tfplan
+        run: terraform apply
