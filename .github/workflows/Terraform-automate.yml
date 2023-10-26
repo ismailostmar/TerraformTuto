@@ -15,7 +15,7 @@ jobs:
       aws-region: 'us-east-1'
 
     steps:
-      - name: Debug AWS Credentials
+      - name:  Debug AWS Credentials
         run: |
           echo "AWS_ACCESS_ID: $AWS_ACCESS_ID"
           echo "AWS_SECRET_ID: $AWS_SECRET_ID"
