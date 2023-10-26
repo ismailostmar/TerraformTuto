@@ -1,4 +1,4 @@
-name: "Terraform-Plan-Infra-Plan"
+name: "Terraform-Destroy"
 
 on:
   workflow_dispatch
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name:  Debug AWS Credentials
-        run: |
+        run: | 
           echo "AWS_ACCESS_ID: $AWS_ACCESS_ID"
           echo "AWS_SECRET_ID: $AWS_SECRET_ID"
           echo "aws_region: $aws-region"
