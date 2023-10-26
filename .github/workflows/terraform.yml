@@ -1,0 +1,37 @@
+name: "Terraform-Destroy"
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+
+    env:	
+      AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
+      AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+      aws-region: 'us-east-1'
+
+    steps:
+      - name:  Debug AWS Credentials
+        run: |
+          echo "AWS_ACCESS_ID: $AWS_ACCESS_ID"
+          echo "AWS_SECRET_ID: $AWS_SECRET_ID"
+          echo "aws_region: $aws-region"
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ID }}
+          aws-region: 'us-east-1'
+          
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Destroy
+        id: Destroy
+        if: github.event_name == 'workflow_dispatch'
+        run: terraform destroy -auto-approve
